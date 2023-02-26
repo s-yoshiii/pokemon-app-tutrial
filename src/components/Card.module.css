@@ -1,0 +1,18 @@
+.card {
+    min-width: 290px;
+    box-shadow: 2px 8px 10px 1px rgba(119, 119, 119, .8);
+    border-radius: 10px;
+    background: #fff;
+}
+
+.name {
+    padding: 0;
+    font-size: 24px;
+    margin-bottom: 10px;
+    margin-top: 0;
+    color: #519259;
+}
+
+.info {
+    text-align: center;
+}
