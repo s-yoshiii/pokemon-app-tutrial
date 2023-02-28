@@ -8,13 +8,15 @@ function App() {
   const initialURL = "https://pokeapi.co/api/v2/pokemon/";
   const [loading, setLoading] = useState(true);
   const [pokemonData, setPokemonData] = useState([]);
+  const [nextURL, setNextURL] = useState("");
 
   useEffect(() => {
     const fetchPokemonData = async () => {
       let res = await getAllPokemon(initialURL);
       // 各詳細データを取得
+      console.log("result", res);
       loadPokemon(res.results);
-
+      setNextURL(res.next);
       setLoading(false);
     };
     fetchPokemonData();
@@ -29,7 +31,14 @@ function App() {
     );
     setPokemonData(_pokemonData);
   };
-  console.log(pokemonData);
+  const handleNextPage = async () => {
+    setLoading(true);
+    let data = await getAllPokemon(nextURL);
+    await loadPokemon(data.results);
+    setLoading(false);
+    console.log(data.results);
+  };
+  const handlePrevPage = () => {};
 
   return (
     <>
@@ -38,11 +47,17 @@ function App() {
         {loading ? (
           <p>Loading...</p>
         ) : (
-          <div className="cardContainer">
-            {pokemonData.map((pokemon, i) => {
-              return <Card key={i} pokemon={pokemon} />;
-            })}
-          </div>
+          <>
+            <div className="cardContainer">
+              {pokemonData.map((pokemon, i) => {
+                return <Card key={i} pokemon={pokemon} />;
+              })}
+            </div>
+            <div className="btn">
+              <button onClick={handlePrevPage}>Prev</button>
+              <button onClick={handleNextPage}>Next</button>
+            </div>
+          </>
         )}
       </div>
     </>
