@@ -10,7 +10,9 @@ const Card = ({ pokemon }) => {
       <h3 className={styles.name}>{pokemon.name}</h3>
       <div className={styles.types}>
         {pokemon.types.map((type) => (
-          <span className={styles.typeName}>{type.type.name}</span>
+          <span ley={type.type.name} className={styles.typeName}>
+            {type.type.name}
+          </span>
         ))}
       </div>
       <div className={styles.info}>
