@@ -64,9 +64,13 @@ function App() {
                 return <Card key={i} pokemon={pokemon} />;
               })}
             </div>
-            <div className="btn">
-              <button onClick={handlePrevPage}>Prev</button>
-              <button onClick={handleNextPage}>Next</button>
+            <div className="btnArea">
+              <button className="btn" onClick={handlePrevPage}>
+                Prev
+              </button>
+              <button className="btn" onClick={handleNextPage}>
+                Next
+              </button>
             </div>
           </>
         )}
